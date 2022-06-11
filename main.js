@@ -1,30 +1,75 @@
-import * as menu from './bookmodules/menu.js';
-import { Book } from './bookmodules/localDB.js';
-import { DateTime } from './bookmodules/luxon.min.js';
+let myLibrary = [];
+let storage = [];
 
-menu.navigationMenu();
+const bookShelf = document.querySelector('.books-list');
+const titleInput = document.querySelector('.titleInput');
+const authorInput = document.querySelector('.authorInput');
+const addBtn = document.querySelector('.add');
 
-const now = DateTime.now();
-const dateTime = document.querySelector('.datetime p');
-dateTime.textContent = now.toJSDate();
+storage = JSON.parse(localStorage.getItem('books')) || [];
 
-const titleInput = document.querySelector('#title-input');
-const authorInput = document.querySelector('#author-input');
+function addBook(book, titleInput, authorInput) {
+  book.titleInput = titleInput;
+  book.authorInput = titleInput;
 
-const bk = new Book(titleInput, authorInput);
+  const bookLabel = document.createElement('article');
+  const bookText = document.createElement('h4');
+  const deleteButton = document.createElement('button');
 
-document.getElementById('form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  bk.addbook();
-  Book.clearfields();
-  Book.fetchbooks();
-});
+  bookLabel.classList.add('bookLabel');
+  bookText.classList.add('bookText');
+  deleteButton.classList.add('btn');
+  deleteButton.classList.add('delete');
 
-Book.fetchbooks();
+  bookShelf.appendChild(bookLabel);
+  bookLabel.appendChild(bookText);
+  bookLabel.appendChild(deleteButton);
 
-document.querySelectorAll('#remove-book').forEach((button, id) => {
-  button.addEventListener('click', () => {
-    Book.removebook(id);
-    Book.fetchbooks();
+  bookText.textContent = `"${titleInput}" by ${authorInput}`;
+  deleteButton.textContent = 'Delete';
+
+  const l = bookLabel.style;
+  l.display = 'flex';
+  l.alignItems = 'center';
+
+  deleteButton.style.margin = '0 5px';
+  deleteButton.style.flex = '1';
+  bookText.style.flex = '7';
+  deleteButton.style.transform = 'translateX(0)';
+  deleteButton.style.height = '45px';
+
+  deleteButton.addEventListener('click', (event) => {
+    event.target.parentNode.remove();
+    book.remove();
   });
+}
+
+class Books {
+  constructor(titleInput, authorInput) {
+    this.titleInput = titleInput;
+    this.authorInput = authorInput;
+  }
+
+  add() {
+    myLibrary.push(this);
+    addBook(this, titleInput.value, authorInput.value);
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+  }
+
+  remove() {
+    myLibrary = myLibrary.filter((element) => element !== this);
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+  }
+}
+for (let i = 0; i < storage.length; i += 1) {
+  const book = new Books();
+  book.titleInput = storage[i].titleInput;
+  book.authorInput = storage[i].authorInput;
+  myLibrary.push(book);
+  addBook(myLibrary[i], myLibrary[i].titleInput, myLibrary[i].authorInput);
+}
+addBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const book = new Books();
+  book.add();
 });

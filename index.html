@@ -1,83 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awesomebook - A collection of books</title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <header>
-      <nav class="menu">
-        <a href="index.html" class="logo">Awesome Books</a>
-        <ul class="navbar">
-          <li class="nav-link border-right">
-            <a href="#booklist-section" id="bookslist">List</a>
-          </li>
-          <li class="nav-link border-right">
-            <a href="#addnew-section" id="addbooks">Add New</a>
-          </li>
-          <li class="nav-link">
-            <a href="#contact-section" id="contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="datetime">
-        <p>Current Date</p>
-      </div>
-  </header>
-
-  <main>
-      <section class="booklist" id="booklist-section">
-        <div class="title">
-          <h2>All awesome books</h2>
-        </div>
-        <div class="container">
-          <ul class="list">
-            
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Awesome books By Mr soulemanou</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="head">
+          <h3>Awesome Books</h3>
+          <ul>
+            <li>
+              <a
+                href="#"
+                class="link link--active"
+                id="link-list"
+                data-section="books-list"
+                >List</a
+              >
+            </li>
+            <li>
+              <a href="#" class="link" id="link-add" data-section="book-form"
+                >Add new</a
+              >
+            </li>
+            <li>
+              <a href="#" class="link" id="link-contact" data-section="contact"
+                >Contact</a
+              >
+            </li>
           </ul>
-        </div>
+        </nav>
+        <p class="time">June 10th 2022, 10:00:32 am</p>
+      </div>
+    </header>
+    <main class="container">
+      <section
+        id="books-list"
+        class="section section--active books-list-section"
+      >
+        <div><h1>All awesome books</h1></div>
+        <div class="books-list"></div>
       </section>
-
-      <section class="addnew" id="addnew-section">
-        <div class="title">
-          <h2>Add a new book</h2>
-        </div>
-        <div class="container">
-          <form id="form">
-            <input type="text" id="title-input" name="title" placeholder="Title" required />
-            <input type="text" id="author-input" name="author" placeholder="Author" required />
-            <div class="btn">
-              <button type="submit">Add</button>
-            </div>
+      <section id="book-form" class="section book-form-section">
+        <div class="newBook">
+          <form action="#" class="books-creator">
+            <div><h1>Add a new book</h1></div>
+            <input
+              type="text"
+              class="titleInput"
+              name="titleInput"
+              placeholder="Title"
+              required
+            />
+            <input
+              type="text"
+              class="authorInput"
+              name="authorInput"
+              placeholder="Author"
+              required
+            />
+            <input class="btn add" type="submit" value="Add" />
           </form>
         </div>
       </section>
-
-      <section class="contacts" id="contact-section">
-        <div class="title">
-          <h2>Contact Information</h2>
+      <section id="contact" class="section contact-section">
+        <div><h1>Contact information</h1></div>
+        <div>
+          <p>
+            Do have any questions or you just want to say "Hello"? <br />
+            You can reach out to us!
+          </p>
         </div>
-        <div class="container">
-          <div class="contact-details">
-            <p>Do you have any question or you just want to say "Hello"?</p>
-            <p>You can reach out to us!</p>
-            <ul class="info">
-              <li>Our Email : mail@mail.com</li>
-              <li>Our Phone number : 0049292828</li>
-              <li>Our Address : Plot 234, Complex building, City name, Country</li>
-            </ul>
-          </div>
+        <div>
+          <ul>
+            <li>Our e-mail: mroboot9@mail.com</li>
+            <li>Our phone number: +237 680802324</li>
+            <li>Our address: yaounde,bastos, Camerron</li>
+          </ul>
         </div>
       </section>
-  </main>
-  
-  <footer class="footer">
-    <div class="copyright">
-      <p>&copy;2022 Awesomebooks, All rights reserved.</p>
-    </div>
-  </footer>
-  <script type='module' src='main.js'></script>
-</body>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">Copyrights &@2022</div>
+      </div>
+    </footer>
+    <script src="main.js"></script>
+    <script src="menulinks.js"></script>
+  </body>
 </html>

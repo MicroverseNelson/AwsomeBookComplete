@@ -1,163 +1,151 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-
-* {
-  margin: 0;
+*{
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
-body {
-  padding: 24px;
-  width: 100vw;
-  font-family: Abel, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #f8f8f8;
-}
-
 header {
-  width: 100%;
-}
-
-.menu {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #9b9e9d;
-  padding: 8px;
-}
-
-.border-right {
-  border-right: 1px solid #9b9e9d;
-}
-
-.logo {
-  text-decoration: none;
-  color: rgb(255, 136, 0);
-  background: rgb(2, 2, 2);
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 18px;
-  font-weight: bolder;
-}
-
-.navbar {
-  list-style-type: none;
-  display: flex;
-}
-
-.nav-link a {
-  text-decoration: none;
-  padding: 0 8px;
-  color: inherit;
-}
-
-.datetime {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.title {
   text-align: center;
-  margin: 12px 0;
-  color: #000;
 }
 
 .container {
   width: 100%;
-  margin: 24px 0;
+  max-width: 800px;
+  margin: 30px auto;
 }
 
-form {
+.section {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  max-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity ease-in-out 1s;
+}
+
+.section.section--active {
+  visibility: visible;
+  max-height: none;
+  opacity: 1;
+}
+
+.section h1 {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.contact-section {
+  max-width: 600px;
   margin: 0 auto;
 }
 
-form input {
+.books-list {
+  border: none;
+}
+
+.bookLabel {
+  padding-left: 12px;
+}
+
+.bookLabel:nth-child(odd) {
+  background-color: rgba(253, 38, 0, 0.671);
+}
+
+.bookLabel:nth-child(even) {
+  background-color: rgba(90, 240, 123, 0.671);
+}
+
+.newBook {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.books-creator {
+  width: 500px;
+}
+
+form h2 {
+  width: 100%;
+  text-align: center;
+}
+
+input {
+  width: 100%;
   margin: 8px 0;
-  padding: 12px;
-  outline: none;
+  height: 30px;
+  box-sizing: border-box;
 }
 
 .btn {
+  width: 120px;
+  margin-left: 100%;
+  transform: translateX(-100%);
+  padding: 5px 20px;
+  box-sizing: border-box;
+  margin-top: 5px;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
 }
 
-form button {
-  margin: 8px 0;
-  padding: 8px;
-  width: 80px;
-}
-
-.contact-details {
-  width: 50%;
-  margin: 0 auto;
-}
-
-.info {
-  margin: 24px 0;
-}
-
-.list {
-  list-style-type: none;
-  margin: 12px 0;
-  border: 1px solid #9b9e9d;
-  padding: 5px;
-  overflow-y: auto;
-}
-
-.list-item {
-  margin: 4px 0;
+.head {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  border: 1px solid gray;
+  height: 40px;
 }
 
-.list-item:nth-child(even) {
-  background: #e69706;
+.head ul {
+  list-style: none;
+  display: flex;
 }
 
-.list-item:nth-child(odd) {
-  background: #060805;
-  color: #fff;
+.head li {
+  display: flex;
+  align-items: center;
 }
 
-.remove-btn {
-  padding: 5px;
-  border: none;
-  text-decoration: none;
-  color: rgb(255, 136, 0);
-  background-color: rgb(3, 3, 3);
-  border-radius: 5px;
-}
-
-.booklist {
+.head li:not(:last-child)::after {
+  content: "";
   display: block;
+  min-width: 2px;
+  height: 24px;
+  margin: 0 18px;
+  border-radius: 1px;
+  background-color: rgb(43, 100, 243);
 }
 
-.addnew {
-  display: none;
+.head a {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
 }
 
-.contacts {
-  display: none;
+.head h2 {
+  padding-left: 40px;
+}
+
+.link.link--active {
+  color: rgb(43, 100, 243);
+}
+
+.time {
+  text-align: right;
+  margin: 4px 0;
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  background-color: #f8f8f8;
-  width: 100%;
-  padding: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
 }
 
-.nav-link a:active {
-  color: #425cec;
-}
-
-.nav-link a:hover {
-  color: #425cec;
-}
-
-.nav-link a:focus {
-  color: #425cec;
+.footer .footer__content {
+  padding: 12px 24px;
+  font-size: 23px;
+  border: 1px solid black;
 }
