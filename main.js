@@ -1,7 +1,7 @@
 import { DateTime } from './modules/luxon.min.js';
-import bookDB from './modules/myBooks.js';
+import BookDB from './modules/myBooks.js';
 
-const myBookDB = new bookDB();
+const myBookDB = new BookDB();
 const form = document.forms[0];
 const menuItems = document.querySelectorAll('.nav-link');
 
