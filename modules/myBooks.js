@@ -10,7 +10,7 @@ export default class BookDB {
   }
 
   displayBooks() {
-    let listOfBooks = '<table class="table table-striped table-sm table-hover">';
+    let listOfBooks = '<table class="table table-striped table-sm table-light">';
     this.objBooks.forEach((book, index) => {
       listOfBooks += `
       <tr>
