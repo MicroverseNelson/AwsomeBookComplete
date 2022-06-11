@@ -1,4 +1,4 @@
-import { DateTime } from './modules/luxon.js';
+import { DateTime } from './modules/luxon.min.js';
 import bookDB from './modules/myBooks.js';
 
 const myBookDB = new bookDB();
