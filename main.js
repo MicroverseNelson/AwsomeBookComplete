@@ -1,75 +1,32 @@
-let myLibrary = [];
-let storage = [];
+import { DateTime } from './modules/luxon.js';
+import bookDB from './modules/myBooks.js';
 
-const bookShelf = document.querySelector('.books-list');
-const titleInput = document.querySelector('.titleInput');
-const authorInput = document.querySelector('.authorInput');
-const addBtn = document.querySelector('.add');
+const myBookDB = new bookDB();
+const form = document.forms[0];
+const menuItems = document.querySelectorAll('.nav-link');
 
-storage = JSON.parse(localStorage.getItem('books')) || [];
-
-function addBook(book, titleInput, authorInput) {
-  book.titleInput = titleInput;
-  book.authorInput = titleInput;
-
-  const bookLabel = document.createElement('article');
-  const bookText = document.createElement('h4');
-  const deleteButton = document.createElement('button');
-
-  bookLabel.classList.add('bookLabel');
-  bookText.classList.add('bookText');
-  deleteButton.classList.add('btn');
-  deleteButton.classList.add('delete');
-
-  bookShelf.appendChild(bookLabel);
-  bookLabel.appendChild(bookText);
-  bookLabel.appendChild(deleteButton);
-
-  bookText.textContent = `"${titleInput}" by ${authorInput}`;
-  deleteButton.textContent = 'Delete';
-
-  const l = bookLabel.style;
-  l.display = 'flex';
-  l.alignItems = 'center';
-
-  deleteButton.style.margin = '0 5px';
-  deleteButton.style.flex = '1';
-  bookText.style.flex = '7';
-  deleteButton.style.transform = 'translateX(0)';
-  deleteButton.style.height = '45px';
-
-  deleteButton.addEventListener('click', (event) => {
-    event.target.parentNode.remove();
-    book.remove();
+menuItems.forEach((menuItem) => menuItem.addEventListener('click', () => {
+  const show = menuItem.getAttribute('data-section');
+  menuItems.forEach((menuItem) => {
+    menuItem.classList.remove('active');
   });
-}
+  menuItem.classList.add('active');
+  const toggleSections = document.querySelectorAll('.content-area');
+  toggleSections.forEach((el) => {
+    el.classList.add('d-none');
+    document.getElementById(show).classList.remove('d-none');
+  });
+}));
 
-class Books {
-  constructor(titleInput, authorInput) {
-    this.titleInput = titleInput;
-    this.authorInput = authorInput;
-  }
+window.onload = () => { myBookDB.displayBooks(); };
 
-  add() {
-    myLibrary.push(this);
-    addBook(this, titleInput.value, authorInput.value);
-    localStorage.setItem('books', JSON.stringify(myLibrary));
-  }
+setInterval(() => {
+  const currentDate = DateTime.now().setLocale('en-US').toLocaleString(DateTime.DATETIME_MED);
+  document.getElementById('timer').innerHTML = `${currentDate}`;
+}, 1000);
 
-  remove() {
-    myLibrary = myLibrary.filter((element) => element !== this);
-    localStorage.setItem('books', JSON.stringify(myLibrary));
-  }
-}
-for (let i = 0; i < storage.length; i += 1) {
-  const book = new Books();
-  book.titleInput = storage[i].titleInput;
-  book.authorInput = storage[i].authorInput;
-  myLibrary.push(book);
-  addBook(myLibrary[i], myLibrary[i].titleInput, myLibrary[i].authorInput);
-}
-addBtn.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const book = new Books();
-  book.add();
+  myBookDB.addBook(form.elements.title.value, form.elements.author.value);
+  form.reset();
 });
