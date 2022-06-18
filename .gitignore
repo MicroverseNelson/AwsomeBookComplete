@@ -3,6 +3,6 @@ DS_Store
 .vscode/
 cc-test-reporter
 coverage/
-/luxon.min.js
+./modules/luxon.min.js
 node_modules/
 *.stackdump
