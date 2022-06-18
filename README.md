@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 # awesomebooks-v2
 
-A simple books website developed by Nelson, in javascript, html and css.
+A simple books website developed by Nelson, in es6 javascript/ modules plus [html and css].
 
 # Deployment
 Live Demo coming soon

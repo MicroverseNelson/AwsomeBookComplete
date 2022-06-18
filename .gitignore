@@ -1,2 +1,8 @@
 # .gitignore
+DS_Store
+.vscode/
+cc-test-reporter
+coverage/
+./modules/luxon.min.js
 node_modules/
+*.stackdump
